@@ -1,0 +1,46 @@
+
+@startuml
+skinparam classAttributeIconSize 0
+top to bottom direction
+
+abstract class "gr::basic_block" as BasicBlock {
+    + Block infrastructure
+}
+
+abstract class "gr::block" as GRBlock {
+    + forecast(...)
+    + general_work(...)
+}
+
+abstract class "qam_mapper" as Mapper {
+    + {static} make(int modulation_order) : sptr
+}
+note right of Mapper
+  Public interface
+  sptr = shared_ptr<qam_mapper>
+  Virtual public inheritance
+end note
+
+class "qam_mapper_impl" as Impl {
+    - d_modulation_order : int
+    + qam_mapper_impl(int modulation_order)
+    + forecast(...)
+    + general_work(...) : int
+}
+
+class "qam_mapper_impl.cc" as Factory {
+    + qam_mapper::make(int modulation_order) : sptr
+}
+
+BasicBlock <|-- GRBlock
+GRBlock <|-- Mapper : virtual public
+Mapper <|-- Impl : public
+
+Factory ..> Impl : constructs
+Factory ..> Mapper : returns shared_ptr
+
+note bottom of Impl
+  Concrete implementation
+  Handles bit-to-QAM-symbol mapping
+end note
+@enduml

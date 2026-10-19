@@ -1,0 +1,19 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Python
+__pycache__/
+*.pyc
+
+# C++
+*.o
+*.so
+*.a
+
+# Editor
+.vscode/
+
+# Temporary files
+*.swp
+*~
