@@ -23,15 +23,6 @@ class OFDM_API ifft : virtual public gr::sync_block
 {
 public:
     typedef std::shared_ptr<ifft> sptr;
-
-    /*!
-     * \brief Return a shared_ptr to a new instance of ofdm::ifft.
-     *
-     * To avoid accidental use of raw pointers, ofdm::ifft's
-     * constructor is in a private implementation
-     * class. ofdm::ifft::make is the public interface for
-     * creating new instances.
-     */
     static sptr make(int ifft_size);
 };
 

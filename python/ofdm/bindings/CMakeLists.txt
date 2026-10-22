@@ -27,7 +27,8 @@ include(GrPybind)
 list(APPEND ofdm_python_files
     qam_mapper_python.cc
     subcarrier_mapper_python.cc
-    ifft_python.cc python_bindings.cc)
+    ifft_python.cc
+    cyclic_prefix_python.cc python_bindings.cc)
 
 gr_pybind_make_oot(ofdm ../../.. gr::ofdm "${ofdm_python_files}")
 

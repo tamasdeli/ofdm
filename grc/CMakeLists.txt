@@ -9,4 +9,5 @@
 install(FILES
     ofdm_qam_mapper.block.yml
     ofdm_subcarrier_mapper.block.yml
-    ofdm_ifft.block.yml DESTINATION share/gnuradio/grc/blocks)
+    ofdm_ifft.block.yml
+    ofdm_cyclic_prefix.block.yml DESTINATION share/gnuradio/grc/blocks)

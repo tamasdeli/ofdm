@@ -14,7 +14,8 @@ include(GrPlatform) #define LIB_SUFFIX
 list(APPEND ofdm_sources
     qam_mapper_impl.cc
     subcarrier_mapper_impl.cc
-    ifft_impl.cc)
+    ifft_impl.cc
+    cyclic_prefix_impl.cc)
 
 set(ofdm_sources
     "${ofdm_sources}"

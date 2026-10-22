@@ -24,6 +24,7 @@ namespace py = pybind11;
     void bind_qam_mapper(py::module& m);
     void bind_subcarrier_mapper(py::module& m);
     void bind_ifft(py::module& m);
+    void bind_cyclic_prefix(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -55,5 +56,6 @@ PYBIND11_MODULE(ofdm_python, m)
     bind_qam_mapper(m);
     bind_subcarrier_mapper(m);
     bind_ifft(m);
+    bind_cyclic_prefix(m);
     // ) END BINDING_FUNCTION_CALLS
 }

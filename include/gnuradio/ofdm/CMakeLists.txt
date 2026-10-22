@@ -12,4 +12,5 @@
 install(FILES api.h
     qam_mapper.h
     subcarrier_mapper.h
-    ifft.h DESTINATION include/gnuradio/ofdm)
+    ifft.h
+    cyclic_prefix.h DESTINATION include/gnuradio/ofdm)

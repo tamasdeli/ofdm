@@ -1,0 +1,31 @@
+id: ofdm_cyclic_prefix
+label: cyclic_prefix
+category: '[ofdm]'
+
+templates:
+  imports: from gnuradio import ofdm
+  make: ofdm.cyclic_prefix(${sample_count}, ${cyclic_prefix_length})
+
+parameters:
+parameters:
+- id: sample_count
+  label: Sample Count
+  dtype: int
+  default: 16
+
+- id: cyclic_prefix_length
+  label: Cyclic Prefix Length
+  dtype: int
+  default: 4
+
+inputs:
+- domain: stream
+  dtype: complex
+  vlen: ${ sample_count }
+
+outputs:
+- domain: stream
+  dtype: complex
+  vlen: ${ sample_count + cyclic_prefix_length }
+
+file_format: 1

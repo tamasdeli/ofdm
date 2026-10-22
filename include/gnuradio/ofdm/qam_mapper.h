@@ -23,15 +23,6 @@ class OFDM_API qam_mapper : virtual public gr::block
 {
 public:
     typedef std::shared_ptr<qam_mapper> sptr;
-
-    /*!
-     * \brief Return a shared_ptr to a new instance of ofdm::qam_mapper.
-     *
-     * To avoid accidental use of raw pointers, ofdm::qam_mapper's
-     * constructor is in a private implementation
-     * class. ofdm::qam_mapper::make is the public interface for
-     * creating new instances.
-     */
     static sptr make(int modulation_order = 4);
 };
 
