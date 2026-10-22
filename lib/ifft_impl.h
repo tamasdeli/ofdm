@@ -18,11 +18,11 @@ namespace ofdm {
 class ifft_impl : public ifft
 {
 private:
-    int d_fft_size;
-    std::unique_ptr<gr::fft::fft_complex_rev> d_fft;
+    int d_ifft_size;
+    std::unique_ptr<gr::fft::fft_complex_rev> d_ifft;
 
 public:
-    ifft_impl(int fft_size);
+    ifft_impl(int ifft_size);
     ~ifft_impl();
 
     // Where all the action really happens

@@ -13,21 +13,20 @@
 namespace gr {
 namespace ofdm {
 
-ifft::sptr ifft::make(int fft_size)
+ifft::sptr ifft::make(int ifft_size)
 {
-    return gnuradio::make_block_sptr<ifft_impl>(fft_size);
+    return gnuradio::make_block_sptr<ifft_impl>(ifft_size);
 }
 
 
-/*
- * The private constructor
- */
-ifft_impl::ifft_impl(int fft_size)
+ifft_impl::ifft_impl(int ifft_size)
     : gr::sync_block("ifft",
-                     gr::io_signature::make(1, 1, sizeof(gr_complex)*fft_size),
-                     gr::io_signature::make(1, 1, sizeof(gr_complex)*fft_size))
+                     gr::io_signature::make(1, 1, sizeof(gr_complex) * ifft_size),
+                     gr::io_signature::make(1, 1, sizeof(gr_complex) * ifft_size))
 {
-    d_fft_size = fft_size;
+    d_ifft_size = ifft_size;
+
+    d_ifft = std::make_unique<gr::fft::fft_complex_rev>(ifft_size);
 }
 
 /*
@@ -48,26 +47,23 @@ int ifft_impl::work(int noutput_items,
     for (int i = 0; i < noutput_items; ++i) {
 
         const gr_complex* input_vector =
-            input_buffer + i * d_fft_size;
+            input_buffer + i * d_ifft_size;
 
         gr_complex* output_vector =
-            output_buffer + i * d_fft_size;
+            output_buffer + i * d_ifft_size;
 
-        // 1. Bemeneti vektor az FFT munkabufferébe
         std::copy_n(
             input_vector,
-            d_fft_size,
-            d_fft->get_inbuf()
+            d_ifft_size,
+            d_ifft->get_inbuf()
         );
 
-        // 2. Inverz FFT végrehajtása
-        d_fft->execute();
+        d_ifft->execute();
 
-        // 3. Normalizált eredmény a kimeneti bufferbe
-        for (int k = 0; k < d_fft_size; ++k) {
+        for (int k = 0; k < d_ifft_size; ++k) {
             output_vector[k] =
-                d_fft->get_outbuf()[k] /
-                static_cast<float>(d_fft_size);
+                d_ifft->get_outbuf()[k] /
+                static_cast<float>(d_ifft_size);
         }
     }
 

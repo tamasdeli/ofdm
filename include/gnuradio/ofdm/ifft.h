@@ -32,7 +32,7 @@ public:
      * class. ofdm::ifft::make is the public interface for
      * creating new instances.
      */
-    static sptr make(int fft_size);
+    static sptr make(int ifft_size);
 };
 
 } // namespace ofdm
